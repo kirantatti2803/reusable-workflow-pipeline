@@ -17,8 +17,9 @@ jobs:
                 echo "Installing Dependencies for App A"
                 cd ..
                 pwd
-                cd react-app
-                npm ci
+                cd ./reach-app
+                pwd
+                #npm ci
              #working-directory: react-app
               if: ${{ inputs.app == 'A' }}
 
