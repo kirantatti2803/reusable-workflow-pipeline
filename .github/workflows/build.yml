@@ -13,13 +13,13 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Code
-              uses: actions/checkout@v3
+              uses: actions/checkout@v3s
 
             - name: Installing Dependencies for App A
               run: |
                 echo "Installing Dependencies for App A"
                 pwd
-                #npm ci
+                npm ci
               working-directory: ${{ github.workspace }}/react-app
               if: ${{ inputs.app == 'A' }}
 
@@ -31,14 +31,14 @@ jobs:
                 if [ -f requirements.txt ]; then
                   pip install -r requirements.txt
                 fi
-                working-directory: pyproject
-                if: ${{ inputs.app == 'B'  }}
+              working-directory: ${{ github.workspace }}/pyproject
+              if: ${{ inputs.app == 'B'  }}
 
             - name: Install and Build for Java Maven for App C
               run: |
                 echo "Install and Build for Java Maven for App C"
                 #cd $APP_PATH
                 # Add your build commands for Java Maven here (if necessary)
-              working-directory: java-meven
+              working-directory: ${{ github.workspace }}/java-maven
               if: ${{ inputs.app == 'C'   }}
           
