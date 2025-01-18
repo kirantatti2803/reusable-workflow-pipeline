@@ -3,6 +3,9 @@ name: Single CI Pipeline
 on:
     workflow_dispatch:
         inputs:
+            runner:
+                required: true
+                type: string
             app:
               description:  "The Application choices A, B or C"
               required: true
