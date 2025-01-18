@@ -5,7 +5,7 @@ on:
         inputs:
             runner:
                 required: true
-                type: strings
+                type: string
             app:
               description:  "The Application choices A, B or C"
               required: true
