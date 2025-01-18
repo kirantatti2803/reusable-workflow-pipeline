@@ -15,7 +15,9 @@ jobs:
             - name: Installing Dependencies for App A
               run: |
                 echo "Installing Dependencies for App A"
+                cd ..
                 pwd
+                cd react-app
                 npm ci
              #working-directory: react-app
               if: ${{ inputs.app == 'A' }}
