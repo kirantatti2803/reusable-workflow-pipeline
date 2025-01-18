@@ -3,6 +3,9 @@ name: Pre-Build Workflows
 on:
     workflow_call:
         inputs:
+            runner:
+              required: true
+              type: string
             app:
                 required: true
                 type: string
@@ -10,8 +13,11 @@ on:
 
 jobs:
     pre-build:
-        runs-on: ubuntu-latest
+        runs-on:  ${{ inputs.runner }}
         steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
             - name: Setup Node.js environment
               uses: actions/setup-node@v4
               with:

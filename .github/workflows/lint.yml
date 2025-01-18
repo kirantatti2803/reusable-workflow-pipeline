@@ -3,6 +3,9 @@ name: Lint Workflow
 on:
     workflow_call:
         inputs:
+            runner:
+                required: true
+                type: string
             app:
                 required: true
                 type: string
@@ -11,7 +14,7 @@ on:
 
 jobs:
     build:
-        runs-on: ubuntu-latest
+        runs-on:  ${{ inputs.runner }}
         steps:
             - name: Linting App A
               run: |
