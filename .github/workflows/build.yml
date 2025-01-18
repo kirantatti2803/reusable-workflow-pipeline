@@ -15,12 +15,9 @@ jobs:
             - name: Installing Dependencies for App A
               run: |
                 echo "Installing Dependencies for App A"
-                cd ..
-                pwd
-                cd ./reach-app
                 pwd
                 #npm ci
-             #working-directory: react-app
+              working-directory: ${{ github.workspace }}/react-app
               if: ${{ inputs.app == 'A' }}
 
             - name: Installing Dependencies for App B
