@@ -23,6 +23,7 @@ jobs:
             - name: Installing Dependencies for App B
               run: |
                 echo "Installing Dependencies for App B"
+                ls -al /home/runner/work/reusable-workflow-pipeline/reusable-workflow-pipeline
                 python -m pip install --upgrade pip
                 pip install flake8 pytest
                 if [ -f requirements.txt ]; then
