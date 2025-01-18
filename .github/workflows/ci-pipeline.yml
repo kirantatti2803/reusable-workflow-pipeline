@@ -9,14 +9,7 @@ on:
               default: "A"
               
 jobs:
-    checkout:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout Code
-              uses: actions/checkout@v3
-
     pre-build:
-        needs: checkout
         uses:  ./.github/workflows/pre-build.yml
         with: 
             app: ${{ inputs.app }}
