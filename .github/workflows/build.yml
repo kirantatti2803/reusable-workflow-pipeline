@@ -12,9 +12,6 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout Code
-              uses: actions/checkout@v3
-
             - name: Installing Dependencies for App A
               run: |
                 echo "Installing Dependencies for App A"
