@@ -9,29 +9,34 @@ on:
                 description: Choice of Application A, B or C
 
 jobs:
-    test:
+    build:
         runs-on: ubuntu-latest
         steps:
-          - name: Test ${{ inputs.app }}
-            run: |
-              echo " Test ${{ inputs.app }}"
-              if [[ "${{ inputs.app }}" == "A" ]]; then
-               echo "Test App A"
-               pwd
-               #cd ./react-app
-               pwd
-               npm test
-              elif [[ "${{ inputs.app }}" == "B" ]]; then
+            - name: Checkout Code
+              uses: actions/checkout@v3
+
+            - name: Testing  App A
+              run: |
+                npm test
+              working-directory: ${{ github.workspace }}/react-app
+              if: ${{ inputs.app == 'A' }}
+
+            - name: Testing  App B
+              run: |
                echo "Test App B"
                pwd
-               #cd ./pyproject/src
+               cd ./pyproject/src
                pwd
-               #python -m pytest addition.py
+               python -m pytest addition.py
                echo "Testing competed"
-              elif [[ "${{ inputs.app }}" == "C" ]]; then
+              working-directory: ${{ github.workspace }}/pyproject
+              if: ${{ inputs.app == 'B'  }}
+
+            - name: Testing  App C
+              run: |
                pwd
                echo "Testing completed"
-              fi
-            if: ${{ inputs.app == 'A' }}
-            working-directory: ./react-app
+              working-directory: ${{ github.workspace }}/java-maven
+              if: ${{ inputs.app == 'C'   }}
+
    

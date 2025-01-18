@@ -20,3 +20,14 @@ jobs:
         with: 
             app: ${{ inputs.app }}
 
+    test:
+        needs: build
+        uses: ./.github/workflows/test.yml
+        with: 
+            app: ${{ inputs.app }}
+        
+    lint:
+        needs: build
+        uses: ./.github/workflows/lint.yml
+        with: 
+            app: ${{ inputs.app }}
