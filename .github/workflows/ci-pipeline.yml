@@ -19,21 +19,25 @@ jobs:
         uses:  ./.github/workflows/pre-build.yml
         with: 
             app: ${{ inputs.app }}
+            runner: ubuntu-latest
 
     build:
         needs: pre-build
         uses: ./.github/workflows/build.yml
         with: 
             app: ${{ inputs.app }}
+            runner: ubuntu-latest
 
     test:
         needs: build
         uses: ./.github/workflows/test.yml
         with: 
             app: ${{ inputs.app }}
+            runner: ubuntu-latest
         
     lint:
         needs: build
         uses: ./.github/workflows/lint.yml
         with: 
             app: ${{ inputs.app }}
+            runner: ubuntu-latest
