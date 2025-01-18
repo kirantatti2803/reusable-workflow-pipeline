@@ -9,6 +9,12 @@ on:
               default: "A"
               
 jobs:
+    checkout:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
     pre-build:
         uses:  ./.github/workflows/pre-build.yml
         with: 
