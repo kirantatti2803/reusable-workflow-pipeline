@@ -12,9 +12,8 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout Code
+            - name: Checkout code
               uses: actions/checkout@v3
-
             - name: Testing  App A
               run: |
                 npm test
@@ -25,11 +24,9 @@ jobs:
               run: |
                echo "Test App B"
                pwd
-               cd ./pyproject/src
-               pwd
                python -m pytest addition.py
                echo "Testing competed"
-              working-directory: ${{ github.workspace }}/pyproject
+              working-directory: ${{ github.workspace }}/pyproject/src
               if: ${{ inputs.app == 'B'  }}
 
             - name: Testing  App C
