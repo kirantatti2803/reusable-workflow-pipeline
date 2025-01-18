@@ -1,0 +1,40 @@
+name: Build Workflow
+
+on:
+    workflow_call:
+        inputs:
+            app:
+                required: true
+                type: string
+                description: Choice of Application A, B or C
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Installing Dependencies for App A
+              run: |
+                echo "Installing Dependencies for App A"
+                npm ci
+              working-directory: ./react-app
+              if: ${{ inputs.app == 'A' }}
+
+            - name: Installing Dependencies for App B
+              run: |
+                echo "Installing Dependencies for App B"
+                python -m pip install --upgrade pip
+                pip install flake8 pytest
+                if [ -f requirements.txt ]; then
+                  pip install -r requirements.txt
+                fi
+                working-directory: ./pyproject
+                if: ${{ inputs.app == 'B'  }}
+
+            - name: Install and Build for Java Maven for App C
+              run: |
+                echo "Install and Build for Java Maven for App C"
+                #cd $APP_PATH
+                # Add your build commands for Java Maven here (if necessary)
+              working-directory: ./java-meven
+              if: ${{ inputs.app == 'C'   }}
+          

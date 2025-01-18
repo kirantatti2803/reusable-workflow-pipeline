@@ -1,0 +1,37 @@
+name: Test Workflow
+
+on:
+    workflow_call:
+        inputs:
+            app:
+                required: true
+                type: string
+                description: Choice of Application A, B or C
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Test ${{ inputs.app }}
+            run: |
+              echo " Test ${{ inputs.app }}"
+              if [[ "${{ inputs.app }}" == "A" ]]; then
+               echo "Test App A"
+               pwd
+               #cd ./react-app
+               pwd
+               npm test
+              elif [[ "${{ inputs.app }}" == "B" ]]; then
+               echo "Test App B"
+               pwd
+               #cd ./pyproject/src
+               pwd
+               #python -m pytest addition.py
+               echo "Testing competed"
+              elif [[ "${{ inputs.app }}" == "C" ]]; then
+               pwd
+               echo "Testing completed"
+              fi
+            if: ${{ inputs.app == 'A' }}
+            working-directory: ./react-app
+   

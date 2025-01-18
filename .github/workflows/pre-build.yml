@@ -1,0 +1,37 @@
+name: Pre-Build Workflows
+
+on:
+    workflow_call:
+        inputs:
+            app:
+                required: true
+                type: string
+                description: Choice of Application A, B or C
+
+jobs:
+    pre-build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v3
+  
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v4
+              with:
+                node-version: '20.x'
+              if: ${{ inputs.app == 'A' }}
+
+            - name: Setup Python environment
+              uses: actions/setup-python@v3
+              with:
+                python-version: '3.10'
+              if: ${{ inputs.app == 'B' }}
+
+            - name: Set up JDK 17
+              uses: actions/setup-java@v4
+              with:
+                java-version: '17'
+                distribution: 'temurin'
+                cache: maven
+              if: ${{ inputs.app == 'C' }}
+          

@@ -1,0 +1,35 @@
+name: Lint Workflow
+
+on:
+    workflow_call:
+        inputs:
+            app:
+                required: true
+                type: string
+                description: Choice of Application A, B or C
+
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Lint for ${{ inputs.app }}
+              run: |
+                echo "Linting ${{ inputs.app }}"
+                if [[ "${{ inputs.app }}" == "A" ]]; then
+                 echo "Lint App A"
+                 #cd ./react-app
+                 npm run lint
+                elif [[ "${{ inputs.app }}" == "B" ]]; then
+                 echo "Lint App B"
+                 # stop the build if there are Python syntax errors or undefined names
+                 #flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+                 # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+                 #flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+                elif [[ "${{ inputs.app }}" == "C" ]]; then
+                 pwd
+                 echo "Lint App C"
+                 echo "Lining for Java Meven completed"
+                fi             
+              if: ${{ inputs.app == 'A' }}
+              working-directory: react-app
+   
