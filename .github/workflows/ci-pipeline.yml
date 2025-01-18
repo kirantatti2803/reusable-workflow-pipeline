@@ -13,6 +13,7 @@ jobs:
         uses:  ./.github/workflows/pre-build.yml
         with: 
             app: ${{ inputs.app }}
+            runner: ubuntu-latest
 
     build:
         needs: pre-build
